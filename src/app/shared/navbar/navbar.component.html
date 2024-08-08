@@ -1,0 +1,38 @@
+<nav class='bg-gray-800'>
+  <div class='mx-auto max-w-7xl px-2 sm:px-6 lg:px-8'>
+    <div class='flex h-16 items-center justify-between'>
+      <!-- TODO: Logo -->
+      <img class='h-8 w-auto' src='https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=500' alt='Your Company'>
+      
+      <div class='flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0'>
+        <button
+          title='Logout'
+          (click)="logout()"
+          class='relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800'
+        >
+          <svg
+            width='24'
+            height='24'
+            viewBox='0 0 24 24'
+            fill='none'
+            stroke='currentColor'
+            stroke-width='2'
+            stroke-linecap='round'
+            stroke-linejoin='round'
+          >
+            <path stroke='none' d='M0 0h24v24H0z' fill='none'/>
+            <path d='M14 8v-2a2 2 0 0 0 -2 -2h-7a2 2 0 0 0 -2 2v12a2 2 0 0 0 2 2h7a2 2 0 0 0 2 -2v-2' />
+            <path d='M9 12h12l-3 -3' />
+            <path d='M18 15l3 -3' />
+          </svg>
+        </button>
+
+        <div class='flex gap-3'>
+          <p class='px-3 py-2 text-sm font-medium text-gray-300 cursor-default'>
+            {{ username }}
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>
