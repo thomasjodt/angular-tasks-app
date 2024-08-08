@@ -1,0 +1,17 @@
+<li class='flex bg-background-300 px-4 py-2 rounded-lg items-center gap-2 border bg-zinc-50'>
+  <app-checkbox
+    [todo]='todo'
+    (onTodoChange)='toggleTodo(todo.id)'
+  />
+
+  <p class='flex-grow'>{{todo.description}}</p>
+
+  @if (!todo.isDone) {
+    <button
+    (click)='removeTodo(todo.id)'
+    class='text-xs text-red-500 hover:bg-red-400 hover:bg-opacity-20 transition-colors duration-300 bg-opacity-15 py-1 px-2 rounded-md'
+  >
+    Eliminar
+  </button>
+  }
+</li>
