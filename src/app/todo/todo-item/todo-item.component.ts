@@ -1,7 +1,7 @@
 import { Component, inject, Input } from '@angular/core'
-import { Todo } from '../../models/Todo'
-import { TodoService } from '../../services/todo.service'
-import { CheckboxComponent } from '../../shared/checkbox/checkbox.component'
+import { Todo } from '../../models'
+import { TodoService } from '../../services'
+import { CheckboxComponent } from '../../shared'
 
 @Component({
   selector: 'app-todo-item',

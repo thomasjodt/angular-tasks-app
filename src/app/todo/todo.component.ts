@@ -1,10 +1,10 @@
 import { Component, inject, WritableSignal } from '@angular/core'
 import { CommonModule } from '@angular/common'
-import { NavbarComponent } from '../shared/navbar/navbar.component'
-import { TodoCreateComponent } from './todo-create/todo-create.component'
-import { TodoService } from '../services/todo.service'
-import type { Todo } from '../models/Todo'
-import { TodoItemComponent } from './todo-item/todo-item.component'
+
+import type { Todo } from '../models'
+import { TodoService } from '../services'
+import { NavbarComponent } from '../shared'
+import { TodoCreateComponent, TodoItemComponent } from '.'
 
 @Component({
   selector: 'app-todo',

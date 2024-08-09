@@ -1,6 +1,6 @@
 import { Component, Input, OnInit, WritableSignal } from '@angular/core'
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms'
-import { Todo } from '../../models/Todo'
+import { Todo } from '../../models'
 
 @Component({
   selector: 'app-todo-create',
