@@ -10,9 +10,10 @@ import { CheckboxComponent } from '../../shared'
   templateUrl: './todo-item.component.html'
 })
 export class TodoItemComponent {
-  todoService = inject(TodoService)
+  private todoService = inject(TodoService)
 
-  @Input() todo!: Todo
+  @Input()
+  public todo!: Todo
 
   public toggleTodo (id: number) {
     this.todoService.todoList.update(t => t.map(todo => {
