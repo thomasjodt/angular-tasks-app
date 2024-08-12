@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, WritableSignal } from '@angular/core'
+import { Component, EventEmitter, inject, OnInit, Output } from '@angular/core'
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms'
 import { Todo } from '../../models'
 
@@ -9,11 +9,13 @@ import { Todo } from '../../models'
   templateUrl: './todo-create.component.html'
 })
 export class TodoCreateComponent implements OnInit {
-  public createForm!: FormGroup
-  
-  @Input() todoList!: WritableSignal<Todo[]>
+  private formBuilder = inject(FormBuilder)
 
-  constructor (private formBuilder: FormBuilder) {}
+  public createForm!: FormGroup
+  public errorMessage: string | null = null
+
+  @Output()
+  public createTask: EventEmitter<Todo> = new EventEmitter()
 
   ngOnInit(): void {
     this.createForm = this.formBuilder.group({
@@ -24,16 +26,21 @@ export class TodoCreateComponent implements OnInit {
     })
   }
 
-  public handleAddTodo () {
+  public handleAddTodo (): void {
     const value = this.createForm.value.newTodo.trim()
-    if (value === '') return
-
-    this.todoList.update(t => ([
-      ...t,
-      new Todo(value)
-    ]))
   
-    this.createForm.reset()
+    if (!/[a-zA-Z0-9\ ]/.test(value)) {
+      const message = 'The value of the description contains invalid characters.'
+      this.errorMessage = message
+      this.createForm.reset()
+      throw new Error(message)
+    }
 
+    this.createTask.emit(new Todo(value))
+    this.createForm.reset()
+  }
+
+  public resetMessage (): void {
+    this.errorMessage = null
   }
 }
