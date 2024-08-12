@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common'
-import { Component, inject } from '@angular/core'
+import { Component, inject, OnInit } from '@angular/core'
 import { Router } from '@angular/router'
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms'
 import { AuthService } from '../services'
@@ -10,34 +10,36 @@ import { AuthService } from '../services'
   imports: [CommonModule, ReactiveFormsModule],
   templateUrl: './login.component.html'
 })
-export class LoginComponent {
-  router = inject(Router)
-  auth = inject(AuthService)
+export class LoginComponent implements OnInit {
+  private router = inject(Router)
+  private auth = inject(AuthService)
+  private formBuilder = inject(FormBuilder)
 
-  loginForm!: FormGroup
-
-  constructor (private formBuilder: FormBuilder) {}
+  public loginForm!: FormGroup
+  public errorMessage: string | null = null
 
   ngOnInit() {
-    this.auth.getAuth().subscribe((isLogged) => {
-      if (isLogged) {
-        this.router.navigateByUrl('/tasks')
-        return
-      }
-    })
-
     this.loginForm = this.formBuilder.group({
       username: ['', Validators.required],
       password: ['', Validators.required]
     })
   }
 
-  login() {
+  public login(): void {
     try {
       this.auth.setToken(this.loginForm.value.username, this.loginForm.value.password)
       this.router.navigateByUrl('/tasks')
     } catch (error) {
-      console.error(error)
+      const message = (error as Error).message
+      console.error(message)
+      this.errorMessage = message
+      this.loginForm.reset()
+    }
+  }
+
+  public cleanErrorMessage (): void {
+    if (this.errorMessage !== null) {
+      this.errorMessage = null
     }
   }
 }
