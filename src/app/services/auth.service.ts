@@ -8,12 +8,12 @@ export class AuthService {
   username: string = 'test01'
   password: string = 'test01'
 
-  getAuth(): Observable<boolean> {
+  getAuth(): boolean {
     const storedToken = localStorage.getItem('authToken')
-    if (storedToken === null) return of(false)
+    if (storedToken === null) return false
 
     const token = JSON.parse(storedToken)
-    return of(token.username === this.username && token.password === this.password)
+    return token.username === this.username && token.password === this.password
   }
 
   setToken (username: string, password: string): void {
