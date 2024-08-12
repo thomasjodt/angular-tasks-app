@@ -1,4 +1,4 @@
-import { Component, inject, WritableSignal } from '@angular/core'
+import { Component, inject } from '@angular/core'
 import { CommonModule } from '@angular/common'
 
 import type { Todo } from '../models'
@@ -21,9 +21,11 @@ import { TodoCreateComponent, TodoItemComponent } from '.'
 export class TodoComponent {
   private todoService = inject(TodoService)
 
-  public todoSignal: WritableSignal<Todo[]> = this.todoService.todoList
-
   public get todoList(): Todo[] {
     return this.todoService.todoList()
+  }
+
+  public createTask (todo: Todo): void {
+    this.todoService.todoList.update(t => ([ ...t, todo]))
   }
 }
