@@ -26,7 +26,8 @@
               type='text'
               formControlName='username'
               autocomplete='usuario'
-              class='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-3'
+              (input)="cleanErrorMessage()"
+              class='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-3 outline-none'
             />
           </div>
         </div>
@@ -47,15 +48,22 @@
               type='password'
               formControlName='password'
               autocomplete='password'
-              class='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-3'
+              (input)="cleanErrorMessage()"
+              class='block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pl-3 outline-none'
             />
           </div>
         </div>
       </div>
 
       <div>
-        <button type='submit' class='flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'>Ingresar</button>
+         <button type='submit' class='w-full rounded-lg border py-2 text-sm font-semibold shadow-[inset_0_4px_4px_0_rgba(255,255,255,0.2),inset_0_-4px_4px_0_rgba(0,0,0,0.2)] bg-[linear-gradient(to_right,#605DFF,#A168FF)] text-white h-12 relative hover:before:absolute hover:before:inset-0 hover:before:m-auto hover:before:bg-white hover:before:bg-opacity-20 before:transition-colors before:duration-200 overflow-hidden'>
+          Ingresar
+         </button>
       </div>
     </form>
+
+    @if (errorMessage !== null) {
+      <div class='text-red-500 bg-red-200 text-xs px-2 py-1 mt-1 rounded-md max-w-fit ml-3'>{{errorMessage}}</div>
+    }
   </fieldset>
 </div>
