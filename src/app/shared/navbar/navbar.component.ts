@@ -1,28 +1,32 @@
 import { Component, inject } from '@angular/core'
+import { CommonModule } from '@angular/common'
 import { Router } from '@angular/router'
-import { AuthService } from '../../services'
+import { map, Observable } from 'rxjs'
+
+import { logout, selectToken, appStore } from '@/store'
+import { AuthService } from '@/services'
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './navbar.component.html'
 })
 export class NavbarComponent {
-  auth = inject(AuthService)
-  router = inject(Router)
-  username!: string
+  private auth = inject(AuthService)
+  private router = inject(Router)
+
+  private store = inject(appStore)
+  public username!: Observable<string | undefined>
 
   logout(): void {
     this.auth.deleteToken()
+    this.store.dispatch(logout())
     this.router.navigateByUrl('/login')
   }
 
-  ngOnInit() {
-    const storedToken = localStorage.getItem('authToken')
-    if (storedToken !== null) {
-      const token = JSON.parse(storedToken)
-      this.username = token.username
-    }
+  ngOnInit () {
+    this.username = this.store.select(selectToken)
+    .pipe(map((token) => token?.username))
   }
 }
