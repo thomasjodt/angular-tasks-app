@@ -56,14 +56,14 @@
       </div>
 
       <div>
-         <button type='submit' class='w-full rounded-lg border py-2 text-sm font-semibold shadow-[inset_0_4px_4px_0_rgba(255,255,255,0.2),inset_0_-4px_4px_0_rgba(0,0,0,0.2)] bg-[linear-gradient(to_right,#605DFF,#A168FF)] text-white h-12 relative hover:before:absolute hover:before:inset-0 hover:before:m-auto hover:before:bg-white hover:before:bg-opacity-20 before:transition-colors before:duration-200 overflow-hidden'>
+         <button type='submit' class='w-full rounded-lg border py-2 text-sm font-semibold shadow-[inset_0_4px_4px_0_rgba(255,255,255,0.2),inset_0_-4px_4px_0_rgba(0,0,0,0.2),0_0_0_2px_rgb(176_175_255/30%),0_0_0_1px_rgb(255_255_255/90%)] bg-[linear-gradient(to_right,#605DFF,#A168FF)] text-white h-12 relative hover:before:absolute hover:before:inset-0 hover:before:m-auto hover:before:bg-white hover:before:bg-opacity-20 active:before:bg-opacity-50 before:transition-colors before:duration-100 overflow-hidden'>
           Ingresar
          </button>
       </div>
     </form>
 
     @if (errorMessage !== null) {
-      <div class='text-red-500 bg-red-200 text-xs px-2 py-1 mt-1 rounded-md max-w-fit ml-3'>{{errorMessage}}</div>
+      <div class='text-red-500 bg-red-200 text-xs text-center p-2 mt-1 rounded-md ml-3'>{{errorMessage}}</div>
     }
   </fieldset>
 </div>
