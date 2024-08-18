@@ -1,0 +1,1 @@
+export { AUTH_REDUCER_KEY, authReducer } from './auth.reducer'
