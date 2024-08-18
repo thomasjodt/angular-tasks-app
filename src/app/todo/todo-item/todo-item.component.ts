@@ -12,7 +12,7 @@ import { CheckboxComponent } from '../../shared'
 export class TodoItemComponent {
   private todoService = inject(TodoService)
 
-  @Input()
+  @Input({ required: true })
   public todo!: Todo
 
   public toggleTodo (id: number) {
