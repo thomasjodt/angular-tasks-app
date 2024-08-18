@@ -1,1 +1,1 @@
-export { selectAuthFeature, selectToken } from './auth.selector'
+export * from './auth.selector'
